@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>QuoraClone - User Profile</title>
+</head>
+<body>
+    <h1>User Profile - {{ user.username }}</h1>
+    <h2>My Questions:</h2>
+    <ul>
+        {% for question in user_questions %}
+        <li><a href="{% url 'question_detail' question.pk %}">{{ question.title }}</a></li>
+        {% endfor %}
+    </ul>
+    <h2>My Answers:</h2>
+    <ul>
+        {% for answer in user_answers %}
+        <li>{{ answer.content }}</li>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'home' %}">Back to Home</a>
+</body>
+</html>

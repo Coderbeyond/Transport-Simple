@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>QuoraClone - Post an Answer</title>
+</head>
+<body>
+    <h1>Post an Answer</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="Post Answer">
+    </form>
+    <a href="{% url 'question_detail' question.pk %}">Back to Question</a>
+</body>
+</html>

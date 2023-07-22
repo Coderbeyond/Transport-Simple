@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>QuoraClone - {{ question.title }}</title>
+</head>
+<body>
+    <h1>{{ question.title }}</h1>
+    <p>{{ question.description }}</p>
+    <h2>Answers:</h2>
+    <ul>
+        {% for answer in answers %}
+        <li>{{ answer.content }}</li>
+        {% if user.is_authenticated %}
+            {% if user not in answer.like_set.all %}
+            <a href="{% url 'like_answer' answer.pk %}">Like</a>
+            {% else %}
+            <a href="{% url 'like_answer' answer.pk %}">Unlike</a>
+            {% endif %}
+        {% endif %}
+        {% endfor %}
+    </ul>
+    {% if user.is_authenticated %}
+        <a href="{% url 'post_answer' question.pk %}">Post an Answer</a>
+    {% endif %}
+    <a href="{% url 'home' %}">Back to Home</a>
+</body>
+</html>
